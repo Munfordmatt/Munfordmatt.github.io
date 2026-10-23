@@ -36,6 +36,6 @@ button:disabled{opacity:.6}.ok{display:none;text-align:center}.ok h2{color:#1a7f
 const f=document.getElementById('f');
 f.addEventListener('submit',async ev=>{ev.preventDefault();const b=document.getElementById('b');b.disabled=true;b.textContent='Sending…';
 try{const r=await fetch('https://formsubmit.co/ajax/matt@bluffcityelectrical.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
-if(!r.ok)throw 0;f.style.display='none';document.getElementById('ok').style.display='block';}
+const j=await r.json();if(!r.ok||String(j.success)!=='true')throw 0;f.style.display='none';document.getElementById('ok').style.display='block';}
 catch(_){document.getElementById('e').style.display='block';b.disabled=false;b.textContent='Request Service';}});
 </script></body></html>
